@@ -26,6 +26,21 @@ async function loadContent() {
     }
 
     document.body.style.visibility = 'visible'
+
+    document.addEventListener('click', function (event) {
+        const nav = document.querySelector('nav')
+        const hamburger = document.querySelector('.hamburger')
+
+        if (nav && !nav.contains(event.target)) {
+            const mobileMenu = document.querySelector('.mobile-menu')
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active')
+                if (hamburger) {
+                    hamburger.classList.remove('active')
+                }
+            }
+        }
+    })
 }
 
 document.addEventListener("DOMContentLoaded", loadContent)
@@ -40,3 +55,14 @@ function changeTheme() {
     let newTheme = document.body.className === "light-mode" ? "dark-mode" : "light-mode"
     setTheme(newTheme)
 }
+
+function toggleMenu() {
+    const hamburger = document.querySelector('.hamburger')
+    const mobileMenu = document.querySelector('.mobile-menu')
+
+    if (hamburger && mobileMenu) {
+        hamburger.classList.toggle('active')
+        mobileMenu.classList.toggle('active')
+    }
+}
+
